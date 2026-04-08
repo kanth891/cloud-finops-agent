@@ -1,0 +1,37 @@
+version: "1.0"
+name: "cloud_finops_optimizer"
+description: "Cloud FinOps cost optimization environment where an AI agent terminates idle servers, right-sizes over-provisioned instances, and protects production workloads"
+author: "OpenEnv Hackathon"
+license: "MIT"
+
+environment:
+  type: "simulator"
+  entrypoint: "env:CloudFinOpsEnv"
+
+tasks:
+  - id: "idle_killer"
+    name: "The Idle Killer"
+    description: "Terminate idle dev servers with 0% CPU usage to reduce costs"
+    difficulty: "easy"
+    grader: "tasks:grade_idle_killer"
+
+  - id: "rightsizer"
+    name: "The Rightsizer"
+    description: "Resize over-provisioned servers without terminating active workloads"
+    difficulty: "medium"
+    grader: "tasks:grade_rightsizer"
+
+  - id: "minefield"
+    name: "The Minefield"
+    description: "Optimize a mixed fleet of 20 servers while strictly protecting all production instances"
+    difficulty: "hard"
+    grader: "tasks:grade_minefield"
+
+evaluation:
+  metrics:
+    - "total_savings"
+    - "production_safety"
+    - "action_efficiency"
+    - "cost_reduction_percent"
+  max_episode_steps: 50
+  time_limit: 300
